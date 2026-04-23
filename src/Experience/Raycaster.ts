@@ -15,7 +15,7 @@ export default class Raycaster {
   update() {
     this.instance.setFromCamera(this.mouse.position, this.camera.instance);
 
-    const domino = this.experience.world?.domino.instance;
+    const domino = this.experience.world?.domino.mesh;
 
     if (domino) {
       this.canvas.classList.remove("clickable");
@@ -29,7 +29,7 @@ export default class Raycaster {
   }
 
   click() {
-    const domino = this.experience.world?.domino.instance;
+    const domino = this.experience.world?.domino.mesh;
 
     if (domino) {
       const intersects = this.instance.intersectObject(domino);

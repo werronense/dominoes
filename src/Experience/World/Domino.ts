@@ -11,7 +11,7 @@ export default class Domino {
   depth = 0.5;
   geometry: THREE.BoxGeometry;
   material: THREE.MeshBasicMaterial;
-  instance: THREE.Mesh;
+  mesh: THREE.Mesh;
   shape: CANNON.Box;
   body: CANNON.Body;
 
@@ -20,9 +20,9 @@ export default class Domino {
     this.geometry = new THREE.BoxGeometry(this.width, this.height, this.depth);
     this.material = new THREE.MeshBasicMaterial();
 
-    this.instance = new THREE.Mesh(this.geometry, this.material);
+    this.mesh = new THREE.Mesh(this.geometry, this.material);
 
-    this.scene.add(this.instance);
+    this.scene.add(this.mesh);
 
     // Setup body
     this.shape = new CANNON.Box(
@@ -34,12 +34,13 @@ export default class Domino {
       position: new CANNON.Vec3(0, 0, 0),
       shape: this.shape,
     });
+    this.body.position.y = this.height * 0.5;
 
     this.physics.addBody(this.body);
   }
 
   update() {
-    this.instance.position.copy(this.body.position);
-    this.instance.quaternion.copy(this.body.quaternion);
+    this.mesh.position.copy(this.body.position);
+    this.mesh.quaternion.copy(this.body.quaternion);
   }
 }
