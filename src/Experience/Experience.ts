@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import * as CANNON from "cannon-es";
 import Sizes from "./Utils/Sizes.ts";
 import Mouse from "./Utils/Mouse.ts";
 import Time from "./Utils/Time.ts";
@@ -15,6 +16,7 @@ export default class Experience {
   mouse?: Mouse;
   time: Time = new Time();
   scene: THREE.Scene = new THREE.Scene();
+  physics = new CANNON.World();
   camera?: Camera;
   raycaster?: Raycaster;
   renderer?: Renderer;
@@ -57,6 +59,7 @@ export default class Experience {
     this.camera?.update();
     this.raycaster?.update();
     this.renderer?.update();
+    this.world?.update();
   }
 
   click() {
