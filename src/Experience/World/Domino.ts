@@ -9,6 +9,7 @@ export default class Domino {
   width = 2;
   height = 4;
   depth = 0.5;
+  clickStrength = 50;
   geometry: THREE.BoxGeometry;
   material: THREE.MeshBasicMaterial;
   mesh: THREE.Mesh;
@@ -42,5 +43,14 @@ export default class Domino {
   update() {
     this.mesh.position.copy(this.body.position);
     this.mesh.quaternion.copy(this.body.quaternion);
+  }
+
+  click(direction: THREE.Vector3, point: THREE.Vector3) {
+    this.body.applyForce(
+      new CANNON.Vec3(direction.x, direction.y, direction.z).scale(
+        this.clickStrength,
+      ),
+      new CANNON.Vec3(point.x, point.y, point.z),
+    );
   }
 }

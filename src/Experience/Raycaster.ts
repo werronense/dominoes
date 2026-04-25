@@ -29,16 +29,16 @@ export default class Raycaster {
   }
 
   click() {
-    const domino = this.experience.world?.domino.mesh;
+    const domino = this.experience.world?.domino;
 
     if (domino) {
-      const intersects = this.instance.intersectObject(domino);
+      const intersects = this.instance.intersectObject(domino.mesh);
 
       if (intersects.length) {
         const { point } = intersects[0];
-        console.log(point);
+        const { direction } = this.instance.ray;
 
-        // todo: apply force to domino when clicked
+        domino.click(direction, point);
       }
     }
   }
