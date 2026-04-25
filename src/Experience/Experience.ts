@@ -7,11 +7,13 @@ import Camera from "./Camera.ts";
 import Renderer from "./Renderer.ts";
 import World from "./World/World.ts";
 import Raycaster from "./Raycaster.ts";
+import Debug from "./Utils/Debug.ts";
 
 let instance: Experience | null = null;
 
 export default class Experience {
   canvas: HTMLCanvasElement = document.querySelector("canvas.webgl")!;
+  debug = new Debug();
   sizes: Sizes = new Sizes();
   mouse?: Mouse;
   time: Time = new Time();

@@ -1,13 +1,15 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons";
 import Experience from "./Experience";
-import type Sizes from "./Utils/Sizes.ts";
+import type GUI from "lil-gui";
 
 export default class Camera {
   experience: Experience = new Experience();
-  sizes: Sizes = this.experience.sizes;
-  scene: THREE.Scene = this.experience.scene;
-  canvas: HTMLCanvasElement = this.experience.canvas;
+  debug = this.experience.debug;
+  debugFolder?: GUI;
+  sizes = this.experience.sizes;
+  scene = this.experience.scene;
+  canvas = this.experience.canvas;
   instance: THREE.PerspectiveCamera;
   controls: OrbitControls;
 
@@ -26,6 +28,34 @@ export default class Camera {
     this.controls = new OrbitControls(this.instance, this.canvas);
     this.controls.maxPolarAngle = Math.PI / 2 - 0.025;
     this.controls.enableDamping = true;
+
+    // Debug
+    if (this.debug.active) {
+      this.debugFolder = this.debug.ui?.addFolder("camera");
+
+      if (this.debugFolder) {
+        this.debugFolder
+          .add(this.instance.position, "x")
+          .name("positionX")
+          .min(-10)
+          .max(10)
+          .step(0.01);
+
+        this.debugFolder
+          .add(this.instance.position, "y")
+          .name("positionY")
+          .min(-10)
+          .max(10)
+          .step(0.01);
+
+        this.debugFolder
+          .add(this.instance.position, "z")
+          .name("positionZ")
+          .min(-10)
+          .max(10)
+          .step(0.01);
+      }
+    }
   }
 
   resize() {
