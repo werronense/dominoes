@@ -11,12 +11,19 @@ export default class Mouse extends EventEmitter {
     super();
 
     window.addEventListener("mousemove", (e) => {
-      this.position.x = (e.clientX / this.sizes.width) * 2 - 1;
-      this.position.y = -((e.clientY / this.sizes.height) * 2 - 1);
+      this.resetPosition(e.clientX, e.clientY);
     });
 
-    window.addEventListener("click", () => {
+    window.addEventListener("click", (e) => {
+      this.resetPosition(e.clientX, e.clientY);
+
       this.emit("click");
     });
+  }
+
+  resetPosition(x: number, y: number) {
+    // Normalize the coordinates
+    this.position.x = (x / this.sizes.width) * 2 - 1;
+    this.position.y = -((y / this.sizes.height) * 2 - 1);
   }
 }

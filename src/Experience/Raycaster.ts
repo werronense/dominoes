@@ -29,6 +29,8 @@ export default class Raycaster {
   }
 
   click() {
+    this.instance.setFromCamera(this.mouse.position, this.camera.instance);
+
     const domino = this.experience.world?.domino;
 
     if (domino) {
