@@ -3,6 +3,8 @@ import * as CANNON from "cannon-es";
 import Experience from "../Experience.ts";
 
 export default class Domino {
+  colors = [0x8646b9, 0x9e6bc7, 0x706bc7, 0x4c469b];
+  color = this.colors[Math.floor(Math.random() * this.colors.length)];
   experience = new Experience();
   scene = this.experience.scene;
   physics = this.experience.physics;
@@ -19,7 +21,7 @@ export default class Domino {
   constructor() {
     // Setup object
     this.geometry = new THREE.BoxGeometry(this.width, this.height, this.depth);
-    this.material = new THREE.MeshBasicMaterial();
+    this.material = new THREE.MeshBasicMaterial({ color: this.color });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
 
