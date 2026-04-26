@@ -14,7 +14,7 @@ export default class Mouse extends EventEmitter {
       this.resetPosition(e.clientX, e.clientY);
     });
 
-    window.addEventListener("click", (e) => {
+    window.addEventListener("pointerdown", (e) => {
       this.resetPosition(e.clientX, e.clientY);
 
       this.emit("click");
