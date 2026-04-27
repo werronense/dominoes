@@ -5,7 +5,7 @@ import Experience from "../Experience";
 export default class Floor {
   experience = new Experience();
   scene = this.experience.scene;
-  physics = this.experience.physics;
+  physics = this.experience.physics.world;
   geometry: THREE.PlaneGeometry;
   material: THREE.MeshBasicMaterial;
   shape: CANNON.Plane;

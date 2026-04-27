@@ -10,8 +10,8 @@ export default class Domino {
   physics = this.experience.physics;
   width = 2;
   height = 4;
-  depth = 0.5;
-  clickStrength = 250;
+  depth = 0.25;
+  clickStrength = 200;
   geometry: THREE.BoxGeometry;
   material: THREE.MeshBasicMaterial;
   mesh: THREE.Mesh;
@@ -38,11 +38,12 @@ export default class Domino {
 
     this.body = new CANNON.Body({
       mass: 1,
+      material: this.physics.materials.dominoMaterial,
       position: new CANNON.Vec3(position.x, this.height * 0.5, position.z),
       shape: this.shape,
     });
 
-    this.physics.addBody(this.body);
+    this.physics.world.addBody(this.body);
   }
 
   update() {
