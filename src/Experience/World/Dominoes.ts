@@ -5,7 +5,7 @@ export default class Dominoes {
 
   constructor() {
     for (let i = 0; i < 5; i++) {
-      this.all.push(new Domino({ x: i, z: i }));
+      this.all.push(new Domino({ x: 0, z: i }));
     }
   }
 
