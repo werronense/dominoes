@@ -15,12 +15,14 @@ export default class Raycaster {
   update() {
     this.instance.setFromCamera(this.mouse.position, this.camera.instance);
 
-    const domino = this.experience.world?.domino.mesh;
+    const dominoes = this.experience.world?.dominoes.all;
 
-    if (domino) {
+    if (dominoes) {
       this.canvas.classList.remove("clickable");
 
-      const intersects = this.instance.intersectObject(domino);
+      const intersects = this.instance.intersectObjects(
+        dominoes.map((domino) => domino.mesh),
+      );
 
       if (intersects.length) {
         this.canvas.classList.add("clickable");
@@ -31,16 +33,21 @@ export default class Raycaster {
   click() {
     this.instance.setFromCamera(this.mouse.position, this.camera.instance);
 
-    const domino = this.experience.world?.domino;
+    const dominoes = this.experience.world?.dominoes.all;
 
-    if (domino) {
-      const intersects = this.instance.intersectObject(domino.mesh);
+    if (dominoes) {
+      const intersects = this.instance.intersectObjects(
+        dominoes.map((domino) => domino.mesh),
+      );
 
       if (intersects.length) {
+        const { uuid } = intersects[0].object;
         const { point } = intersects[0];
         const { direction } = this.instance.ray;
 
-        domino.click(direction, point);
+        const domino = dominoes.find((domino) => domino.mesh.uuid === uuid);
+
+        domino?.click(direction, point);
       }
     }
   }

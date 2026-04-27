@@ -11,19 +11,23 @@ export default class Domino {
   width = 2;
   height = 4;
   depth = 0.5;
-  clickStrength = 50;
+  clickStrength = 250;
   geometry: THREE.BoxGeometry;
   material: THREE.MeshBasicMaterial;
   mesh: THREE.Mesh;
   shape: CANNON.Box;
   body: CANNON.Body;
 
-  constructor() {
+  constructor(position: { x: number; z: number } = { x: 0, z: 0 }) {
     // Setup object
     this.geometry = new THREE.BoxGeometry(this.width, this.height, this.depth);
     this.material = new THREE.MeshBasicMaterial({ color: this.color });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
+
+    this.mesh.position.x = position.x;
+    this.mesh.position.y = this.height * 0.5;
+    this.mesh.position.z = position.z;
 
     this.scene.add(this.mesh);
 
@@ -34,10 +38,9 @@ export default class Domino {
 
     this.body = new CANNON.Body({
       mass: 1,
-      position: new CANNON.Vec3(0, 0, 0),
+      position: new CANNON.Vec3(position.x, this.height * 0.5, position.z),
       shape: this.shape,
     });
-    this.body.position.y = this.height * 0.5;
 
     this.physics.addBody(this.body);
   }
