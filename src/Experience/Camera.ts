@@ -21,7 +21,7 @@ export default class Camera {
       0.1,
       100,
     );
-    this.instance.position.set(0.5, 6.5, 10);
+    this.instance.position.set(4, 12, 45);
     this.scene.add(this.instance);
 
     // Setup orbit controls
@@ -37,22 +37,22 @@ export default class Camera {
         this.debugFolder
           .add(this.instance.position, "x")
           .name("positionX")
-          .min(-10)
-          .max(10)
+          .min(-100)
+          .max(100)
           .step(0.01);
 
         this.debugFolder
           .add(this.instance.position, "y")
           .name("positionY")
-          .min(-10)
-          .max(10)
+          .min(-100)
+          .max(100)
           .step(0.01);
 
         this.debugFolder
           .add(this.instance.position, "z")
           .name("positionZ")
-          .min(-10)
-          .max(10)
+          .min(-100)
+          .max(100)
           .step(0.01);
       }
     }

@@ -14,7 +14,7 @@ export default class Floor {
 
   constructor() {
     // Setup object
-    this.geometry = new THREE.PlaneGeometry(30, 30);
+    this.geometry = new THREE.PlaneGeometry(100, 100);
     this.material = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
