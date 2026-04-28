@@ -13,7 +13,7 @@ export default class Domino {
   depth = 0.25;
   clickStrength = 200;
   geometry: THREE.BoxGeometry;
-  material: THREE.MeshBasicMaterial;
+  material: THREE.MeshStandardMaterial;
   mesh: THREE.Mesh;
   shape: CANNON.Box;
   body: CANNON.Body;
@@ -21,9 +21,12 @@ export default class Domino {
   constructor(position: { x: number; z: number } = { x: 0, z: 0 }) {
     // Setup object
     this.geometry = new THREE.BoxGeometry(this.width, this.height, this.depth);
-    this.material = new THREE.MeshBasicMaterial({ color: this.color });
+    this.material = new THREE.MeshStandardMaterial({ color: this.color });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
+
+    this.mesh.castShadow = true;
+    this.mesh.receiveShadow = true;
 
     this.mesh.position.x = position.x;
     this.mesh.position.y = this.height * 0.5;

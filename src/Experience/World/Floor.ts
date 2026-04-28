@@ -7,7 +7,7 @@ export default class Floor {
   scene = this.experience.scene;
   physics = this.experience.physics.world;
   geometry: THREE.PlaneGeometry;
-  material: THREE.MeshBasicMaterial;
+  material: THREE.MeshStandardMaterial;
   shape: CANNON.Plane;
   mesh: THREE.Mesh;
   body: CANNON.Body;
@@ -15,9 +15,10 @@ export default class Floor {
   constructor() {
     // Setup object
     this.geometry = new THREE.PlaneGeometry(100, 100);
-    this.material = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
+    this.material = new THREE.MeshStandardMaterial({ color: 0xaaaaaa });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
+    this.mesh.receiveShadow = true;
     this.mesh.rotation.x = -Math.PI * 0.5;
 
     this.scene.add(this.mesh);
