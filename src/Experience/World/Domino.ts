@@ -56,9 +56,7 @@ export default class Domino {
 
   click(direction: THREE.Vector3, point: THREE.Vector3) {
     this.body.applyForce(
-      new CANNON.Vec3(direction.x, direction.y, direction.z).scale(
-        this.clickStrength,
-      ),
+      new CANNON.Vec3(direction.x, 0, direction.z).scale(this.clickStrength),
       new CANNON.Vec3(point.x, point.y, point.z),
     );
   }

@@ -4,7 +4,7 @@ export default class Dominoes {
   all: Domino[] = [];
 
   constructor() {
-    const count = 75;
+    const count = 70;
 
     for (let i = 0; i < count; i++) {
       const x = Math.random() * 0.5;

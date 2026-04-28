@@ -10,6 +10,7 @@ export default class Physics {
 
     // Materials
     this.materials.dominoMaterial = new CANNON.Material("dominoMaterial");
+    this.materials.floorMaterial = new CANNON.Material("floorMaterial");
 
     this.world.addContactMaterial(
       new CANNON.ContactMaterial(
@@ -19,6 +20,16 @@ export default class Physics {
           friction: 0.01,
           restitution: 0.01,
           contactEquationStiffness: 1e6,
+        },
+      ),
+    );
+
+    this.world.addContactMaterial(
+      new CANNON.ContactMaterial(
+        this.materials.dominoMaterial,
+        this.materials.floorMaterial,
+        {
+          restitution: 0.01,
         },
       ),
     );

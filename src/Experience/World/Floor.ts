@@ -5,7 +5,7 @@ import Experience from "../Experience";
 export default class Floor {
   experience = new Experience();
   scene = this.experience.scene;
-  physics = this.experience.physics.world;
+  physics = this.experience.physics;
   geometry: THREE.PlaneGeometry;
   material: THREE.MeshStandardMaterial;
   shape: CANNON.Plane;
@@ -28,6 +28,7 @@ export default class Floor {
 
     this.body = new CANNON.Body({
       mass: 0,
+      material: this.physics.materials.floorMaterial,
       shape: this.shape,
     });
     this.body.quaternion.setFromAxisAngle(
@@ -35,6 +36,6 @@ export default class Floor {
       Math.PI * 0.5,
     );
 
-    this.physics.addBody(this.body);
+    this.physics.world.addBody(this.body);
   }
 }
