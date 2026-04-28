@@ -28,6 +28,7 @@ export default class Environment {
     this.directionalLight.shadow.camera.near = -50;
     this.directionalLight.shadow.camera.far = 50;
 
+    this.directionalLight.shadow.radius = 2;
     this.directionalLight.shadow.bias = 0;
     this.directionalLight.shadow.normalBias = 0;
 
@@ -56,6 +57,13 @@ export default class Environment {
         .name("directionalLightZ")
         .min(-100)
         .max(100)
+        .step(0.001);
+
+      this.debugFolder
+        .add(this.directionalLight.shadow, "radius")
+        .name("shadowRadius")
+        .min(-5)
+        .max(5)
         .step(0.001);
 
       this.debugFolder
