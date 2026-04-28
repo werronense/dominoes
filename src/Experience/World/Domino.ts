@@ -11,7 +11,7 @@ export default class Domino {
   width = 2;
   height = 4;
   depth = 0.25;
-  clickStrength = 200;
+  clickStrength = 100;
   geometry: THREE.BoxGeometry;
   material: THREE.MeshStandardMaterial;
   mesh: THREE.Mesh;
